@@ -1,0 +1,27 @@
+# Dipakai di EC2 khusus DB (Fase 3). Jalanin Postgres DOANG.
+#   docker compose -f docker-compose.db.yml up -d
+#
+# Port 5432 di-publish supaya app instance bisa konek lewat PRIVATE IP.
+# WAJIB: di security group, izinkan 5432 hanya dari security group / subnet
+# internal (jangan ke publik).
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  pgdata:

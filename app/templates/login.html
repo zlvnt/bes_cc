@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{# Halaman login tanpa nav header #}
+{% block header %}{% endblock %}
+
+{% block content %}
+<form class="login-box" method="post" action="{{ url_for('login') }}">
+  <h1>Login</h1>
+  {% if error %}<div class="error">{{ error }}</div>{% endif %}
+  <label>Username</label>
+  <input type="text" name="username" autofocus required>
+  <label>Password</label>
+  <input type="password" name="password" required>
+  <button class="btn" type="submit">Masuk</button>
+</form>
+{% endblock %}

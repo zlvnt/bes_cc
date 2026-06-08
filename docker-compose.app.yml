@@ -1,0 +1,22 @@
+# Dipakai di tiap EC2 webserver (Fase 4 & 5). Jalanin Flask DOANG.
+#   INSTANCE_ID=1 DB_HOST=<private-ip-EC2-DB> docker compose -f docker-compose.app.yml up -d --build
+#
+# Tidak ada service postgres di sini — DB ada di instance terpisah (integrated DB).
+# Set INSTANCE_ID beda per instance (1 dan 2) supaya load balancer kelihatan
+# memutar trafik.
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    environment:
+      INSTANCE_ID: ${INSTANCE_ID}
+      SECRET_KEY: ${SECRET_KEY}
+      DB_HOST: ${DB_HOST}          # private IP instance DB
+      DB_PORT: ${DB_PORT:-5432}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "80:8000"                  # publik via 80, gunicorn dengar di 8000
+    volumes:
+      - ./app/static/foto:/app/static/foto

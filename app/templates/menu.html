@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Menu Utama{% endblock %}
+
+{% block content %}
+<h1>Selamat datang{% if username %}, {{ username }}{% endif %}!</h1>
+<p>Pilih menu di bawah ini:</p>
+<div class="menu-grid">
+  <a class="card" href="{{ url_for('anggota') }}">
+    <h2>Daftar Anggota</h2>
+    <p>Lihat seluruh anggota kelompok.</p>
+  </a>
+</div>
+{% endblock %}

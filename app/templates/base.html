@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Tubes{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  {% block header %}
+  <header>
+    <strong>Kelompok Tubes</strong>
+    <nav>
+      <a href="{{ url_for('menu') }}">Menu</a>
+      <a href="{{ url_for('anggota') }}">Anggota</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+  </header>
+  {% endblock %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    Served by instance <span class="pill">{{ instance_id }}</span>
+  </footer>
+</body>
+</html>

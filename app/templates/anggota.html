@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Daftar Anggota{% endblock %}
+
+{% block content %}
+<h1>Daftar Anggota</h1>
+{% if anggota %}
+<div class="grid">
+  {% for a in anggota %}
+  <div class="member">
+    <img src="{{ url_for('static', filename='foto/' ~ (a.foto or 'placeholder.png')) }}"
+         alt="Foto {{ a.nama }}"
+         onerror="this.src='{{ url_for('static', filename='foto/placeholder.png') }}'">
+    <div class="info">
+      <div class="nama">{{ a.nama }}</div>
+      <div class="meta">
+        NIM: {{ a.nim }}<br>
+        Prodi: {{ a.prodi }}<br>
+        {% if a.email %}Email: {{ a.email }}{% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>Belum ada data anggota.</p>
+{% endif %}
+{% endblock %}
