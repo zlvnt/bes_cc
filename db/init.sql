@@ -17,12 +17,12 @@ CREATE TABLE IF NOT EXISTS users (
     password_hash VARCHAR(255) NOT NULL
 );
 
--- Seed data anggota (GANTI dengan data asli kelompokmu).
--- Kolom foto = nama file yang kamu taruh di app/static/foto/
+-- Seed data anggota kelompok.
 INSERT INTO anggota (nama, nim, prodi, foto, email) VALUES
-    ('Anggota Satu', '1010101010', 'Teknik Informatika', 'anggota1.jpg', 'satu@example.com'),
-    ('Anggota Dua',  '2020202020', 'Sistem Informasi',   'anggota2.jpg', 'dua@example.com'),
-    ('Anggota Tiga', '3030303030', 'Teknik Komputer',    'anggota3.jpg', 'tiga@example.com')
+    ('Zelvin Apri Thady',        '102022330294', '', 'zelvin.jpg',   NULL),
+    ('Dendi Prawira',            '102022330454', '', 'dendi.jpeg',   NULL),
+    ('Fauzi Achmad Koesnaedi',   '102022300352', '', 'fauzi.jpeg',   NULL),
+    ('Faadhil Al Ghifari',       '102022300425', '', 'faadhil.png',  NULL)
 ON CONFLICT DO NOTHING;
 
 -- User login dibuat otomatis oleh app saat startup (admin / admin123)

@@ -14,7 +14,7 @@
       <div class="nama">{{ a.nama }}</div>
       <div class="meta">
         NIM: {{ a.nim }}<br>
-        Prodi: {{ a.prodi }}<br>
+        {% if a.prodi %}Prodi: {{ a.prodi }}<br>{% endif %}
         {% if a.email %}Email: {{ a.email }}{% endif %}
       </div>
     </div>
